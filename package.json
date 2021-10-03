@@ -1,0 +1,19 @@
+{
+  "name": "hdcore-ts",
+  "version": "1.0.0",
+  "description": "Core functions of HD wallet",
+  "main": "index.js",
+  "repository": "https://github.com/npsables/hdcore.git",
+  "author": "npsables <phuongnguyen.ng3010@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.29.2",
+    "bip32": "^2.0.6",
+    "bip39": "^3.0.4",
+    "ed25519-hd-key": "^1.2.0",
+    "tweetnacl": "^1.0.3"
+  }
+}
