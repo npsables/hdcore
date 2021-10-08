@@ -11,7 +11,6 @@ import { COMPONENTS } from "./constants";
 */
 
 const account = {
-    
     createMnemonic: (bytes: number = 256) => {
       return bip39.generateMnemonic(bytes);
     },
@@ -24,21 +23,48 @@ const account = {
       return seed;
     },
 
-    createMasterAccount: (coin_type:number): {pub: number; private: number;} => {
-        if (coin_type in Object.keys(COMPONENTS)):
-        return;
 
+    /**
+   * Create master keys pair
+   * @param coinType string 
+   * @param seed string | Buffer
+   * @returns object keypair {'pub': ..., 'prv': ..., }
+   */
+    createMasterAccount: (coin_type:number, seed: string | Buffer): {} | boolean => {
+        if (coin_type in Object.keys(COMPONENTS)){
+          return COMPONENTS[coin_type].key_pair_master(seed);
+        }
+        else return false;
     },
 
-    createChildAccount: (coin_type:number, index:string): {pub: number; private: number;} => {
-      if (coin_type in Object.keys(COMPONENTS))
-          return;
 
+    /**
+   * Create child keys by adding path to params
+   * @params same as create master keys pair
+   * @param path string path derivations ()
+   * @returns object keypair {'pub': ..., 'prv': ..., }
+   */
+    createChildAccount: (coin_type:number, seed: string | Buffer, path:string): {}  => {
+      if (coin_type in Object.keys(COMPONENTS)){
+      return COMPONENTS[coin_type].key_pair_master(seed, path);
+      }
+      else return {}
     },
 
+
+    /**
+   * Create path for all coins, assume we all use hardened keys
+   * @param accountIndex string
+   * @param coinType string
+   * @param addressIndex string
+   * @returns path string
+   */
     getPath : (accountIndex: number, coinType: number, addressIndex: number): string => {
-        return `m/${this.purpose}'/${this.coinType}'/${accountIndex}'/${Number(isInternalChain)}'/${addressIndex}'`
+      // m/44'/501'/0'/0'/0'
+        return `m/44'/${coinType}/${accountIndex}'/0'/${addressIndex}'`
     },
 
 
 } 
+
+export default account
