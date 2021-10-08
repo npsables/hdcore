@@ -1,6 +1,6 @@
 import * as bip39 from "bip39";
-import { Keypair, PublicKey, sendAndConfirmTransaction } from '@solana/web3.js'
-import { randomBytes } from "tweetnacl";
+import {  PublicKey } from '@solana/web3.js'
+// import { randomBytes } from "tweetnacl";
 import { COMPONENTS } from "./constants";
 
 /* TODO: client ask for creating wallet
@@ -55,7 +55,7 @@ const account = {
     /**
    * Create path for all coins, assume we all use hardened keys
    * @param accountIndex string
-   * @param coinType string
+   * @param coinType number
    * @param addressIndex string
    * @returns path string
    */
@@ -65,6 +65,14 @@ const account = {
     },
 
 
-} 
-
+    /**
+   * Get address of account
+   * @param coin_type number
+   * @param publicKey string
+   * @returns address string
+   */
+    getAddress : (publicKey: PublicKey | string , coin_type:number): string => {
+        return COMPONENTS[coin_type].get_address(publicKey);
+    } 
+}
 export default account
