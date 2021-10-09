@@ -1,4 +1,5 @@
 import * as bip39 from "bip39";
+// import { randomBytes } from "tweetnacl";
 import { COMPONENTS } from "./constants";
 /* TODO: client ask for creating wallet
   + 1st: gen mnemonic
@@ -46,7 +47,7 @@ const account = {
     /**
    * Create path for all coins, assume we all use hardened keys
    * @param accountIndex string
-   * @param coinType string
+   * @param coinType number
    * @param addressIndex string
    * @returns path string
    */
@@ -54,5 +55,14 @@ const account = {
         // m/44'/501'/0'/0'/0'
         return `m/44'/${coinType}/${accountIndex}'/0'/${addressIndex}'`;
     },
+    /**
+   * Get address of account
+   * @param coin_type number
+   * @param publicKey string
+   * @returns address string
+   */
+    getAddress: (publicKey, coin_type) => {
+        return COMPONENTS[coin_type].get_address(publicKey);
+    }
 };
 export default account;
