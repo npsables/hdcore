@@ -1,9 +1,16 @@
+import { setPRNG } from "tweetnacl"
 import { create_solana_pair,  
           get_solana_address,
+          solana_tx,
           create_bitcoin_testnet_pair,
           get_bitcoin_testnet_address,
                 } from "./wallet" 
 // export const ARRAY_INDEX  = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+
+export const DEFAULT_EMPTY_ADDRESS: string = '11111111111111111111111111111111'
+export const DEFAULT_WSOL: string =
+  'So11111111111111111111111111111111111111112'
+
 
 export const COMPONENTS  : any = {
     0: {
@@ -30,7 +37,8 @@ export const COMPONENTS  : any = {
       "name": "Solana",
       "link": "https://solana.com",
       "key_pair_master":  create_solana_pair,
-      "get_address":      get_solana_address
+      "get_address":      get_solana_address,
+      "transaction": solana_tx
     },
 
     60: {
