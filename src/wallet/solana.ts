@@ -70,33 +70,16 @@ const isPublicKey = (pubkey: PublicKey | undefined): boolean => {
      return true
 }
 
-
-
- 
 export const solana_tx = {
-     signTransaction: async (transaction: Transaction, keypair: Keypair) => {
-          const signData = transaction.serializeMessage()
-          const signature = nacl.sign.detached(signData, keypair.secretKey)
-          const buff_signature = Buffer.from(signature)
-          return buff_signature
-     },
      
-
-     sendTransaction: async (transaction: Transaction, connection: Connection) => {
-          const tx = transaction.serialize()
-          const txId = await connection.sendRawTransaction(tx, {
-            skipPreflight: true,
-            preflightCommitment: 'confirmed',
-          })
-          const {
-            value: { err },
-          } = await connection.confirmTransaction(txId, 'confirmed')
-          
-          // TODO: Debug transaction 
-          if (err) throw new Error("Sthing wrong with transaction")
-          return txId
-     },      
-
+     /**
+      * Get lamports to reciever address
+      * @param keyPair Keypair
+      * @param recieveAddress? address of reciever
+      * @param amount amount of Lamports to
+      * @param network option(dev/testnet), auto devnet
+      * @returns trans id
+      */
      send: async (keypair: Keypair, recieveAddress: string, amount: number, network?: string,): Promise<string|boolean> => {
           if (!isAddress(recieveAddress)) throw new Error('Invalid reciever address')
           if (!keypair) throw new Error('Keypair cannot be empty')          
@@ -142,6 +125,10 @@ export const solana_tx = {
           return sol / 10 ** 9
      },
 
+     /** 
+      * @TODO callback function on change
+      * no need right now 
+      */
      track: () => {
 
      },
@@ -161,6 +148,29 @@ export const solana_tx = {
           const signature = await connection.requestAirdrop(pubkey, LAMPORTS_PER_SOL);
           await connection.confirmTransaction(signature);
           return true
-     }
+     },
+
+     // sub function
+     signTransaction: async (transaction: Transaction, keypair: Keypair) => {
+          const signData = transaction.serializeMessage()
+          const signature = nacl.sign.detached(signData, keypair.secretKey)
+          const buff_signature = Buffer.from(signature)
+          return buff_signature
+     },
+     // sub function
+     sendTransaction: async (transaction: Transaction, connection: Connection) => {
+          const tx = transaction.serialize()
+          const txId = await connection.sendRawTransaction(tx, {
+               skipPreflight: true,
+               preflightCommitment: 'confirmed',
+          })
+          const {
+               value: { err },
+          } = await connection.confirmTransaction(txId, 'confirmed')
+          
+          // TODO: Debug transaction 
+          if (err) throw new Error("Sthing wrong with transaction")
+          return txId
+     },   
 
 }
