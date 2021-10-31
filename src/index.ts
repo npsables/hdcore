@@ -1,7 +1,4 @@
-export * from './constants'
+export * from "./constants";
+export { default as COMPONENTS } from "./constants";
 
-export * as account from './account'
-
-// export * from './wallet'
-
-export * as COMPONENTS from './constants'
+export { default as account } from "./account";

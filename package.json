@@ -7,7 +7,7 @@
   "author": "npsables <phuongnguyen.ng3010@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   },
   "dependencies": {
     "@solana/web3.js": "^1.29.2",
