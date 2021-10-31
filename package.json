@@ -2,7 +2,11 @@
   "name": "hdcore-ts",
   "version": "1.0.0",
   "description": "Core functions of HD wallet",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf ./dist"
+  },
   "repository": "https://github.com/npsables/hdcore.git",
   "author": "npsables <phuongnguyen.ng3010@gmail.com>",
   "license": "MIT",
@@ -11,6 +15,7 @@
   },
   "dependencies": {
     "@solana/web3.js": "^1.29.2",
+    "axios": "^0.24.0",
     "bip32": "^2.0.6",
     "bip39": "^3.0.4",
     "bitcoinjs-lib": "^5.2.0",

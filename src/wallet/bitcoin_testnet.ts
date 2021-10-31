@@ -1,8 +1,8 @@
 import * as bip32 from 'bip32'
 import * as bitcoin from 'bitcoinjs-lib'
 // import { ARRAY_INDEX } from '../constants'; 
-import * as nacl from 'tweetnacl';
-
+// const axios = require('axios').default;
+import {default as axios} from "axios";
 
 /**
  * Create Bitcoin key pair
@@ -26,6 +26,7 @@ export const create_bitcoin_testnet_pair = function (seed: string | Buffer, path
      return {'pub': child.publicKey, 'prv': child.privateKey}
 }
 
+
 /**
  * get address of account
  * @param publicKey publicKey from solanajs
@@ -42,3 +43,50 @@ export const get_bitcoin_testnet_address = function (publicKey: Buffer): string 
           return false
      }
 } 
+
+export const bitcoin_tn_tx = {
+
+     /**
+      * Get account balance
+      * @param network? option(dev/testnet), auto devnet
+      * @param pubkey 
+      * @returns false if sth wrong, othws number of sol
+      */
+     get_balance: async (publicKey: Buffer): Promise<number|boolean> => {
+          const address = bitcoin.payments.p2pkh({
+                    pubkey: publicKey,
+                    network:  bitcoin.networks.testnet,           
+                }).address as string;
+          try {
+               const balance = await axios.get(`https://api.blockchair.com/bitcoin/testnet/dashboards/address/${address}?limit=1`).then(function (response) {
+                    return response.data.data[address].address.balance;
+                  }).catch(function (error) {
+                    throw new Error(error)
+                  });
+               return balance/10**8
+          }
+          catch (e) {
+               return false
+          }
+     },
+
+
+     /** 
+      * @TODO callback function on change
+      * no need right now 
+      */
+     track: () => {
+          
+     },
+     
+     
+     // /**
+     //  * Airdrop 1 SOL
+     //  * @param network? option(dev/testnet), auto devnet
+     //  * @param pubkey 
+     //  * @returns
+     //  */
+     // airdrop_one: async (pubkey: PublicKey, network?: string,): Promise<boolean> => {
+     // }
+
+}
