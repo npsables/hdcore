@@ -5,7 +5,7 @@ import * as nacl from 'tweetnacl';
 
 
 /**
- * Create Bitcoin key pair
+ * Create Ethereum key pair
  * @param seed string
  * @param path string, if no path passed, create master key pair
  * @returns true/false
