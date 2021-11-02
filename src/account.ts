@@ -79,6 +79,16 @@ const account = {
   getAddress: (publicKey: PublicKey | string, coin_type: number): string => {
     return COMPONENTS[coin_type].get_address(publicKey);
   },
+
+
+    /**
+   * Build transaction
+   * @param coin_type number
+   * @returns object transaction
+   */
+     getTransaction: (coin_type: number): string => {
+      return COMPONENTS[coin_type].transaction;
+    },
 };
 
 export default account;
