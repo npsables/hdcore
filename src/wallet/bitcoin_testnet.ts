@@ -36,7 +36,7 @@ export const create_bitcoin_testnet_pair = function (
 
 /**
  * get address of account
- * @param publicKey publicKey from solanajs
+ * @param publicKey publicKey from @function create_bitcoin_testnet_pair (Buffer) or already change to hex
  * @returns base58 string
  */
 export const get_bitcoin_testnet_address = function (publicKey: Buffer): string | undefined | boolean {

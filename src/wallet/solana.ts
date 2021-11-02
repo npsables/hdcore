@@ -79,7 +79,7 @@ export const solana_tx = {
       * Get lamports to reciever address
       * @param keyPair Keypair
       * @param recieveAddress? address of reciever
-      * @param amount amount of Lamports to
+      * @param amount amount of SOL to
       * @param network option(dev/testnet), auto devnet
       * @returns trans id
       */
@@ -102,7 +102,7 @@ export const solana_tx = {
           const instruction = SystemProgram.transfer({
                fromPubkey: pubkey,
                toPubkey: rcvpubkey,
-               lamports: amount,
+               lamports: amount*10**9,
           });
 
           let transaction = new Transaction();
@@ -116,6 +116,7 @@ export const solana_tx = {
           const txId = await solana_tx.sendTransaction(transaction, connection);
           return txId;
      },
+
 
      /**
       * Get account balance
@@ -142,6 +143,7 @@ export const solana_tx = {
       */
      track: () => { },
 
+
      /**
       * Airdrop 1 SOL
       * @param network? option(dev/testnet), auto devnet
@@ -162,14 +164,16 @@ export const solana_tx = {
           return true;
      },
 
-     // sub function
+
+     // sub function dont use
      signTransaction: async (transaction: Transaction, keypair: Keypair) => {
           const signData = transaction.serializeMessage();
           const signature = nacl.sign.detached(signData, keypair.secretKey);
           const buff_signature = Buffer.from(signature);
           return buff_signature;
      },
-     // sub function
+
+     // sub function dont use
      sendTransaction: async (transaction: Transaction, connection: Connection) => {
           const tx = transaction.serialize();
           const txId = await connection.sendRawTransaction(tx, {

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    // "noImplicitAny": false,
+    "noImplicitAny": false,
     "target": "esnext",   
     "moduleResolution": "node",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible lirary declarations. */                /* Emit ECMAScript-standard-compliant class fields. */
     "module": "esnext",                                /* Specify what module code is generated. */
