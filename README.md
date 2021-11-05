@@ -2,9 +2,7 @@
 
 
 ## Introduction
-Hdcore-ts helps with hardened key generation and transaction building problem for developers.
-
-This library mainly use testnet for speed testing. 
+Hdcore-ts helps with hardened key generation and transaction problem.
 
 ## Installation
 
@@ -13,7 +11,6 @@ npm i hdcore-ts
 ```
 
 ## Usage
-Create keypair using 'account' and transaction using 'transaction' in 'COMPONENTS'
 ```ts
 import * as hdcore from 'hdcore-ts'
 ```
