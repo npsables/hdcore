@@ -30,13 +30,15 @@ const account = {
    * @returns object keypair {'pub': ..., 'prv': ..., }
    */
   createMasterAccount: (
-    coin_type: number,
+    coin_type: string,
     seed: string | Buffer
-  ): {} | boolean => {
-    if (coin_type in Object.keys(COMPONENTS)) {
-      return COMPONENTS[coin_type].key_pair_master(seed);
-    } else return false;
-  },
+  ): {} => {
+    try {
+      const keypair = COMPONENTS[coin_type].key_pair_master(seed);
+      return keypair;
+    } catch (e) {
+      throw new Error("Wrong: " + e)
+    }  },
 
   /**
    * Create child keys by adding path to params
@@ -45,13 +47,16 @@ const account = {
    * @returns object keypair {'pub': ..., 'prv': ..., }
    */
   createChildAccount: (
-    coin_type: number,
+    coin_type: string,
     seed: string | Buffer,
     path: string
   ): {} => {
-    if (coin_type in Object.keys(COMPONENTS)) {
-      return COMPONENTS[coin_type].key_pair_master(seed, path);
-    } else return {};
+    try {
+      const keypair = COMPONENTS[coin_type].key_pair_master(seed, path);
+      return keypair;
+    } catch (e) {
+      throw new Error("Wrong: " + e)
+    }
   },
 
   /**
@@ -67,7 +72,7 @@ const account = {
     addressIndex: number
   ): string => {
     // m/44'/501'/0'/0'/0'
-    return `m/44'/${coinType}/${accountIndex}'/0'/${addressIndex}'`;
+    return `m/44'/${coinType}'/${accountIndex}'/0'/${addressIndex}'`;
   },
 
   /**
@@ -76,19 +81,29 @@ const account = {
    * @param publicKey string
    * @returns address string
    */
-  getAddress: (publicKey: PublicKey | string, coin_type: number): string => {
+  getAddress: (publicKey: PublicKey | string, coin_type: string): string => {
+    try {
     return COMPONENTS[coin_type].get_address(publicKey);
+    }
+    catch (e) {
+      throw new Error("Wrong: " + e)
+    }
   },
 
 
-    /**
-   * Build transaction
-   * @param coin_type number
-   * @returns object transaction
-   */
-     getTransaction: (coin_type: number): string => {
+  /**
+ * Build transaction
+ * @param coin_type number
+ * @returns object transaction
+ */
+  getTransaction: (coin_type: string): string => {
+    try {
       return COMPONENTS[coin_type].transaction;
-    },
+    }
+    catch (e) {
+      throw new Error("Wrong: " + e)
+    }
+  },
 };
 
 export default account;

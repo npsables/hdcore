@@ -14,10 +14,10 @@ import {
 export const DEFAULT_EMPTY_ADDRESS: string = "11111111111111111111111111111111";
 export const DEFAULT_WSOL: string =
   "So11111111111111111111111111111111111111112";
-export const PROVIDER_ROPSTEN = 'https://ropsten.infura.io/v3/101a5ebde7e545d9a7bca647752caa91';
+export const PROVIDER_ROPSTEN = "https://ropsten.infura.io/v3/101a5ebde7e545d9a7bca647752caa91";
 
 const COMPONENTS: any = {
-  0: {
+  "0": {
     index: "0",
     hex: "0x80000000",
     symbol: "BTC",
@@ -25,7 +25,7 @@ const COMPONENTS: any = {
     link: "https://bitcoin.org/",
   },
 
-  1: {
+  "1": {
     index: "1",
     hex: "0x80000001",
     symbol: "BTCT",
@@ -36,7 +36,7 @@ const COMPONENTS: any = {
 
   },
 
-  501: {
+  "501": {
     index: "501",
     hex: "0x800001f5",
     symbol: "SOL",
@@ -47,7 +47,7 @@ const COMPONENTS: any = {
     transaction: solana_tx,
   },
 
-  60: {
+  "60": {
     index: "60",
     hex: "0x8000003c",
     symbol: "ETH",

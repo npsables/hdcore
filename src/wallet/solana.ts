@@ -84,13 +84,15 @@ export const solana_tx = {
       * @returns trans id
       */
      send: async (
-          keypair: Keypair,
+          publicKey: Buffer,
+          privateKey: Buffer,
           recieveAddress: string,
           amount: number,
           network?: string
      ): Promise<string | boolean> => {
           if (!isAddress(recieveAddress)) throw new Error("Invalid reciever address");
-          if (!keypair) throw new Error("Keypair cannot be empty");
+          // if (!keypair) throw new Error("Keypair cannot be empty");
+          const keypair = Keypair.fromSecretKey(privateKey);
           const rcvpubkey = new PublicKey(recieveAddress);
           const pubkey = keypair.publicKey;
           // Build tx
