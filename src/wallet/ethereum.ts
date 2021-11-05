@@ -59,7 +59,7 @@ export const ethereum_tx = {
           const nonce = Number(await web3.eth.getTransactionCount(address))
           const send_amount = amount * 10 ** 18;
 
-          // 
+          // fee ~ 1 GWei * 25 for fast confirmation (testnet of course)
           var rawTx = {
                from: address,
                nonce: web3.utils.toHex(nonce),

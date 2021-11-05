@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "noImplicitAny": false,
-    "target": "esnext",   
-    "moduleResolution": "node",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible lirary declarations. */                /* Emit ECMAScript-standard-compliant class fields. */
-    "module": "esnext",                                /* Specify what module code is generated. */
+    "target": "es2020",
+    "module": "commonjs",
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "outDir": "./dist",
     "lib": [
+      "es2020",
       "esnext",
     ],
     "allowJs": true,
@@ -14,7 +14,7 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
     },
     "include": [
-      "src/**/*.ts",
+      "src",
     ],  
     "exclude": [
       "node_modules",
@@ -25,6 +25,4 @@
         "./src/index.ts"
       ],
     },
-    
-  "compileOnSave": true
 }
