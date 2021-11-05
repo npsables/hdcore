@@ -15,20 +15,43 @@ npm i hdcore-ts
 ## Usage
 Create keypair using 'account' and transaction using 'transaction' in 'COMPONENTS'
 ```ts
-import {account, COMPONENTS} from 'hdcore-ts'
+import * as hdcore from 'hdcore-ts'
 ```
 
-+ Create account:
-    + Use * from account.ts (createMasterAccount, createChildAccount) => {'pub': ..., 'prv': ..., }
-    + Create master account function auto have the PATH, only pass PATH as parameter when you want create child keys... for general upgrade purposes.
-    + User desgin to have number of Key generations (by useing path generation)
+Example on Solana: 
++ bip39 generation: 
+```ts
+const mnem =  hdcore.account.createMnemonic()
+const seed = hdcore.account.createSeed(mnem)
+```
 
-+ Other utils functions:
-    + Get each blockchain function in constants.ts
-    + Get publickey
-    + Get address
-    + Get derivation path (auto hardened)
++ Master account generation on Solana: 
+```ts
+const master = hdcore.account.createMasterAccount('501', seed)      
+// {pub: ..., prv: ...}
+```
 
+
++ Child account generation on Solana: 
+```ts
+const childindex = 1
+const path = hdcore.account.getPath(0,501,1)                       
+ //("m/44'/501'/0'/0'/1'")
+const acc1 = hdcore.account.createMasterAccount('501', seed, path)
+```
+
++ Fund account: (devnet solana) 
+```ts
+const transaction = hdcore.account.getTransaction('501')
+transaction.airdrop_one(a.pub)                                      
+// true
+```
+
++ Send (devnet solana)
+```ts
+hdcore.account.getTransaction('501').send(acc1.pub, acc1.prv, " recieve pubkey", 0.05)   
+// return transaction id
+```
 
 
 ## Testing (Not done)
