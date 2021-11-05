@@ -1,6 +1,6 @@
 {
   "name": "hdcore-ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Core functions of HD wallet",
   "main": "dist/index.js",
   "scripts": {
