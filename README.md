@@ -64,6 +64,7 @@ npm test
 ```
 
 ## References
+- [Sen JS](https://github.com/DescartesNetwork/sen-js)
 - [Slip 10](https://github.com/satoshilabs/slips/blob/master/slip-0010.md)
 - [Slip 44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
 - [Bip 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
