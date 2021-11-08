@@ -50,9 +50,9 @@ transaction.get_balance(acc1.pub)
 // 1
 ```
 
-+ Send (devnet solana)
++ Send: (devnet solana)
 ```ts
-transaction.send(acc1.pub, acc1.prv, " recieve pubkey", 0.05)   
+transaction.send(acc1.pub, acc1.prv, "recieve pubkey", 0.05)   
 // return transaction id
 ```
 

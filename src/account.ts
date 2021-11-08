@@ -72,7 +72,23 @@ const account = {
     addressIndex: number
   ): string => {
     // m/44'/501'/0'/0'/0'
+    
     return `m/44'/${coinType}'/${accountIndex}'/0'/${addressIndex}'`;
+  },
+
+  getFullPath: (
+    accountIndex: number,
+    coinType: number,
+    indexPath: string
+  ): string => {
+    // "1 123 123 5123512" 
+    const index = indexPath.split(" ").join("'/");
+    // m/44'/501'/0'/0'/0'/0'
+    const path = `m/44'/${coinType}'/${accountIndex}'/0'/${index}'`;
+    if (!pathRegex.test(path)) {
+      throw new Error("Invalid path")
+    }
+    return path
   },
 
   /**
@@ -107,3 +123,4 @@ const account = {
 };
 
 export default account;
+export const pathRegex = new RegExp("^m(\\/[0-9]+')+$");
