@@ -46,7 +46,7 @@ export const ethereum_tx = {
       * @param pubkey 
       * @returns hex transaction hash
       */
-     send_tx: async (publicKey: Buffer, privateKey: Buffer, recieveAddress: string, amount: number, fee?: number, http_provider?: string, chain?: string): Promise<string> => {
+     send: async (publicKey: Buffer, privateKey: Buffer, recieveAddress: string, amount: number, fee?: number, http_provider?: string, chain?: string): Promise<string> => {
           if (!http_provider) {
                http_provider = PROVIDER_ROPSTEN;
                chain = 'ropsten'
