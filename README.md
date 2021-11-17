@@ -2,7 +2,8 @@
 
 
 ## Introduction
-Hdcore-ts helps with hardened key generation and transaction problem.
+Hdcore-ts helps with hardened key generation and transaction problems for Hierarchical Deterministic Wallets.
+(Haven't deal with utxo blockchain)
 
 ## Installation
 
