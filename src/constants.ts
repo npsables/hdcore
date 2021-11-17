@@ -18,6 +18,8 @@ export const DEFAULT_WSOL: string =
 // ETH constant
 export const PROVIDER_ROPSTEN = "https://ropsten.infura.io/v3/101a5ebde7e545d9a7bca647752caa91";
 
+
+// blockchain const 
 const COMPONENTS: any = {
   "0": {
     index: "0",
