@@ -104,7 +104,7 @@ export const solana_tx = {
           const instruction = SystemProgram.transfer({
                fromPubkey: pubkey,
                toPubkey: rcvpubkey,
-               lamports: amount*10**9,
+               lamports: amount * 10 ** 9,
           });
 
           let transaction = new Transaction();

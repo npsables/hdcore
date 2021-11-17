@@ -66,7 +66,7 @@ export const bitcoin_tn_tx = {
       url: 'https://blockstream.info/testnet/api/tx',
       data: tx
     } as AxiosRequestConfig;
-    
+
     axios.request(options).then(function (response) {
       console.log(response.data);
       return true
@@ -114,7 +114,6 @@ export const bitcoin_tn_tx = {
     build_tx.sign(0, wallet);
     const tx_hex = build_tx.build().toHex();
     return tx_hex
-
   },
 
   /**

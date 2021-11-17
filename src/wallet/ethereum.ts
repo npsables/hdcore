@@ -1,7 +1,7 @@
 // import {hdkey} from 'ethereumjs-wallet'
 const hdkey = require('hdkey')
 import * as ethUtil from 'ethereumjs-util'
-import { default as Web3 } from 'web3'
+import Web3 from 'web3';
 import { PROVIDER_ROPSTEN } from '../constants'
 import { Transaction } from 'ethereumjs-tx'
 /**
@@ -46,7 +46,7 @@ export const ethereum_tx = {
       * @param pubkey 
       * @returns hex transaction hash
       */
-     send: async (publicKey: Buffer, privateKey: Buffer, recieveAddress: string, amount: number, fee?: number, http_provider?: string, chain?: string): Promise<string> => {
+     send: async (publicKey: Buffer, privateKey: Buffer, recieveAddress: string, amount: number, max_wei?: number, http_provider?: string, chain?: string): Promise<string> => {
           if (!http_provider) {
                http_provider = PROVIDER_ROPSTEN;
                chain = 'ropsten'
@@ -54,7 +54,7 @@ export const ethereum_tx = {
           const web3 = new Web3(http_provider);
 
           // build tx 
-          if (!fee) fee = Number(await web3.eth.getGasPrice());
+          if (!max_wei) max_wei = Number(await web3.eth.getGasPrice()) * 25;
           const address = get_ethereum_address(publicKey);
           const nonce = Number(await web3.eth.getTransactionCount(address))
           const send_amount = amount * 10 ** 18;
@@ -63,7 +63,7 @@ export const ethereum_tx = {
           var rawTx = {
                from: address,
                nonce: web3.utils.toHex(nonce),
-               gasPrice: web3.utils.toHex(fee ** 25),
+               gasPrice: web3.utils.toHex(max_wei),
                gasLimit: web3.utils.toHex('1000000'),
                to: recieveAddress,
                value: web3.utils.toHex(send_amount),
@@ -75,7 +75,7 @@ export const ethereum_tx = {
           // send tx
           const result = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex')).on('receipt', function (receipt) {
                console.log(receipt.status)
-          }).on('error', console.error); ;;
+          }).on('error', console.error);;;
 
           return result.transactionHash
 
@@ -83,7 +83,7 @@ export const ethereum_tx = {
 
      /**
       * Get account balance 
-      * @param network? option(dev/testnet), auto devnet
+      * @param publicKey? option(dev/testnet), auto devnet
       * @param pubkey 
       * @returns false if sth wrong, othws number of sol
       */
@@ -97,20 +97,11 @@ export const ethereum_tx = {
 
 
      /** 
-      * @TODO callback function on change
+      * @TODO callback function on change (web hook)
       * no need right now 
       */
      track: () => {
 
      },
 
-
-     // /**
-     //  * Airdrop 1 SOL
-     //  * @param network? option(dev/testnet), auto devnet
-     //  * @param pubkey 
-     //  * @returns
-     //  */
-     // airdrop_one: async (pubkey: PublicKey, network?: string,): Promise<boolean> => {
-     // }
 }

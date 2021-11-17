@@ -9,11 +9,13 @@ import {
   get_ethereum_address,
   ethereum_tx
 } from "./wallet";
-// export const ARRAY_INDEX  = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 
+// SOL constant
 export const DEFAULT_EMPTY_ADDRESS: string = "11111111111111111111111111111111";
 export const DEFAULT_WSOL: string =
   "So11111111111111111111111111111111111111112";
+
+// ETH constant
 export const PROVIDER_ROPSTEN = "https://ropsten.infura.io/v3/101a5ebde7e545d9a7bca647752caa91";
 
 const COMPONENTS: any = {

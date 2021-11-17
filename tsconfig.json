@@ -2,8 +2,10 @@
   "compilerOptions": {
     "noImplicitAny": false,
     "target": "esnext",   
+    "allowSyntheticDefaultImports": true,
     // "moduleResolution": "node",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible lirary declarations. */                /* Emit ECMAScript-standard-compliant class fields. */
-    "module": "commonjs",                                /* Specify what module code is generated. */
+    "module": "commonjs",     
+    "esModuleInterop": true,                           
     // "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "outDir": "./dist",
     "declaration": true,
