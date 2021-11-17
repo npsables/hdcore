@@ -109,8 +109,8 @@ export const bitcoin_tn_tx = {
 
     var build_tx = new bitcoin.TransactionBuilder(network);
     build_tx.addInput(tx_hash, tx_id);
-    build_tx.addOutput(recieveAddress, amount);
-    build_tx.addOutput(address, tx_value - amount - fee);
+    build_tx.addOutput(recieveAddress, satoshi);
+    build_tx.addOutput(address, tx_value - satoshi - fee);
     build_tx.sign(0, wallet);
     const tx_hex = build_tx.build().toHex();
     return tx_hex
