@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run clean && tsc",
     "clean": "rm -rf dist",
-    "test": "mocha"
+    "test": "npm run build && mocha"
   },
   "repository": "https://github.com/npsables/hdcore.git",
   "author": "npsables <phuongnguyen.ng3010@gmail.com>",

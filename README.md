@@ -29,7 +29,6 @@ const master = hdcore.account.createMasterAccount('501', seed)
 // {pub: ..., prv: ...}
 ```
 
-
 + Child account generation on Solana: 
 ```ts
 const childindex = 1
