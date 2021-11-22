@@ -33,9 +33,9 @@ const master = hdcore.account.createMasterAccount('501', seed)
 + Child account generation on Solana: 
 ```ts
 const childindex = 1
-const path = hdcore.account.getPath(0,501,1)                       
+const path = hdcore.account.getPath(0,501,childindex)                       
  //("m/44'/501'/0'/0'/1'")
-const acc1 = hdcore.account.createMasterAccount('501', seed, path)
+const acc1 = hdcore.account.createChildAccount('501', seed, path)
 ```
 
 + Fund account: (devnet solana) 
