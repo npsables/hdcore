@@ -25,7 +25,7 @@ describe('Account SOLANA', function () {
     const a =  account.createMnemonic()    
     const seed = account.createSeed(a)
     const path = account.getPath(501,10)
-    console.log(path)
+    // console.log(path)
     const ok = account.createChildAccount('501', seed, path)
     if (!ok) throw new Error('Failed mnemonic creation')
   })

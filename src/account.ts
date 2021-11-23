@@ -61,7 +61,6 @@ const account = {
 
   /**
    * Create path for all coins, assume we all use hardened keys
-   * @param accountIndex string
    * @param coinType number
    * @param addressIndex string
    * @returns path string
