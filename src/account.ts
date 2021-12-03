@@ -66,16 +66,16 @@ const account = {
    * @returns path string
    */
   getPath: (
-    coinType: number,
-    addressIndex: number
+    coinType: string,
+    addressIndex: string
   ): string => {
     // m/44'/501'/0'/0'/0'
     return `m/44'/${coinType}'/0'/0'/${addressIndex}'`;
   },
 
   getFullPath: (
-    accountIndex: number,
-    coinType: number,
+    accountIndex: string,
+    coinType: string,
     indexPath: string
   ): string => {
     // "1 123 123 5123512" 

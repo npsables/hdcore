@@ -21,7 +21,7 @@ describe('Account SOLANA', function () {
     if (!ok) throw new Error('Failed mnemonic creation')
   })
 
-  it('Should be valid path', async function () {
+  it('Should be valid path', async function () {  
     const path = account.getPath(chainID, 2021)
     // console.log(ok)
     if (!path) throw new Error('Failed create path')
